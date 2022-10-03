@@ -1,7 +1,8 @@
 import express from "express"
 import cors from "cors";
 import dotenv from "dotenv";
-import categoriesRouter from "./routers/categoriesRouter.js"
+import categoriesRouter from "./routers/categoriesRouter.js";
+import gamesRouter from './routers/gamesRouter.js';
 
 
 dotenv.config();
@@ -10,6 +11,7 @@ app.use(cors())
 app.use(express.json())
 
 app.use(categoriesRouter);
+app.use(gamesRouter);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`server listen on port ${PORT}`))
