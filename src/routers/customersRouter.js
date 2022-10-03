@@ -1,10 +1,12 @@
 import { Router } from "express";
-import { listCustomers, singleClient } from "../controllers/customersControllers.js";
+import { listCustomers, singleClient, insertClient, updateClient } from "../controllers/customersControllers.js";
+import CustomersValidation from "../middlewares/validate.js";
 
 const router = Router();
 
 router.get('/customers', listCustomers);
 router.get('/customers', singleClient);
-
+router.post('/customers', CustomersValidation, insertClient);
+router.put('/customers', CustomersValidation, updateClient);
 
 export default router;
