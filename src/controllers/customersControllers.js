@@ -40,7 +40,19 @@ export async function insertClient(req, res){
 
     try{
 
+        const clientExist = await connection.query(`SELECT * FROM customers WHERE cpf=$1;`, [cpf]);
+
+        if(clientExist.rows[0]){
+            return res.sendStatus(409);
+        }
+
+        await connection.query(`INSERT INTO customers (name, phone, cpf, birthday) VALUES ($1, $2, $3, $4)`, [name, phone, cpf, birthday]);
+
+        return res.sendStatus(201);
+        
     }catch(err){
+
         return res.status(500).send('error no servidor');
+
     }
 }
