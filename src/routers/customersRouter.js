@@ -5,8 +5,8 @@ import CustomersValidation from "../middlewares/validate.js";
 const router = Router();
 
 router.get('/customers', listCustomers);
-router.get('/customers', singleClient);
+router.get('/customers/:id', singleClient);
 router.post('/customers', CustomersValidation, insertClient);
-router.put('/customers', CustomersValidation, updateClient);
+router.put('/customers/:id', CustomersValidation, updateClient);
 
 export default router;
